@@ -47,6 +47,11 @@ variable "datasource_url" {
     type = string
 }
 
+variable "datasource_name" {
+    description = "Grafana datasource Name"
+    type = string
+}
+
 variable "project_label" {
     description = "Project Label"
     type = string
