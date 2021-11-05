@@ -19,9 +19,9 @@ resource "grafana_dashboard" "metrics" {
 }
 
 resource "grafana_data_source" "data_source_stack" {
-  type = var.data_source_type
-  name = var.data_source_name
-  url  = var.data_source_url
+  type = var.datasource_type
+  name = var.datasource_name
+  url  = var.datasource_url
 #   basic_auth_enabled = var.basic_auth_enabled
 #   basic_auth_username = var.basic_auth_username
 #   basic_auth_password = var.basic_auth_password
