@@ -36,10 +36,6 @@ variable "dashboard_config_file" {
     type = string
 }
 
-variable "dashboard_config_file" {
-    description = "Path to Grafana Dashboard Config FIle"
-    type = string
-}
 
 variable "datasource_type" {
     description = "Grafana datasource type"
