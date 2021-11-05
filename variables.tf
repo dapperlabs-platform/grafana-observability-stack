@@ -47,7 +47,7 @@ variable "datasource_url" {
     type = string
 }
 
-variable "label" {
+variable "project_label" {
     description = "Project Label"
     type = string
 }
