@@ -41,3 +41,8 @@ variable "datasource_type" {
     description = "Grafana datasource type"
     type = string
 }
+
+variable "datasource_url" {
+    description = "Grafana datasource url"
+    type = string
+}
