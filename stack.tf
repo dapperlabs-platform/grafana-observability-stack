@@ -49,7 +49,7 @@ resource "grafana_synthetic_monitoring_check" "dns" {
     data.grafana_synthetic_monitoring_probes.main.probes.Toronto,
   ]
   labels = {
-    project = var.project_name
+    project = var.label
   }
   settings {
     dns {}
