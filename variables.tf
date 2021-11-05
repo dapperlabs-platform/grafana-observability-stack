@@ -41,3 +41,7 @@ variable "dashboard_config_file" {
     type = string
 }
 
+variable "datasource_type" {
+    description = "Grafana datasource type"
+    type = string
+}
