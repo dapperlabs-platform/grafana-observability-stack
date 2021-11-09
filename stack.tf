@@ -1,16 +1,8 @@
-locals {
-  monitoring_data = [
-    var.monitoring_data
-  ]
-
-}
-
-
 data "grafana_synthetic_monitoring_probes" "main" {}
 
 resource "grafana_synthetic_monitoring_check" "dns" {
-  job     = [for v in local.monitoring_data : v.job_name]
-  target  = [for v in local.monitoring_data : v.target_url]
+  job     = [for v in var.monitoring_data : v.job_name]
+  target  = [for v in var.monitoring_data : v.target_url]
   enabled = false
   probes = [
     data.grafana_synthetic_monitoring_probes.main.probes.Atlanta,
