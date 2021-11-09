@@ -1,40 +1,16 @@
-# locals {
-#     monitoring_stacks_data = flatten([
-#         for k, v in var.monitoring_stack :
-#         [for i in v : {k : k, i : i}]
-#     ])
+locals {
+  monitoring_data = [
+    var.monitoring_data
+  ]
 
-#     monitoring_stack_list = {
-#         for j in local.monitoring_stacks_data : "${j.k}" => j
-#     }
-# }
-
-resource "grafana_folder" "collection" {
-  title = var.grafana_folder_title
-}
-
-resource "grafana_dashboard" "metrics" {
-  folder      = grafana_folder.collection.id
-  config_json = var.dashboard_config_file
-}
-
-resource "grafana_data_source" "data_source_stack" {
-  type = var.datasource_type
-  name = var.datasource_name
-  url  = var.datasource_url
-#   basic_auth_enabled = var.basic_auth_enabled
-#   basic_auth_username = var.basic_auth_username
-#   basic_auth_password = var.basic_auth_password
-#   password = var.password
-#   username = var.username
 }
 
 
 data "grafana_synthetic_monitoring_probes" "main" {}
 
 resource "grafana_synthetic_monitoring_check" "dns" {
-  job     = var.job_name
-  target  = var.target_url
+  job     = [for v in local.monitoring_data : v.job_name]
+  target  = [for v in local.monitoring_data : v.target_url]
   enabled = false
   probes = [
     data.grafana_synthetic_monitoring_probes.main.probes.Atlanta,
@@ -49,7 +25,7 @@ resource "grafana_synthetic_monitoring_check" "dns" {
     data.grafana_synthetic_monitoring_probes.main.probes.Toronto,
   ]
   labels = {
-    project = var.project_label
+    project = [for v in local.monitoring_data : v.project_label]
   }
   settings {
     dns {}
