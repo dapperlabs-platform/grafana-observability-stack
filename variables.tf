@@ -5,7 +5,7 @@ variable "job_name" {
 
 variable "target_url" {
   description = "This is the http url for the website endpoint you want to monitor"
-  type        = map(list(string))
+  type        = string
 }
 
 variable "project_label" {
