@@ -1,8 +1,8 @@
 data "grafana_synthetic_monitoring_probes" "main" {}
 
 resource "grafana_synthetic_monitoring_check" "dns" {
-  job     = [for v in var.monitoring_data : v.job_name]
-  target  = [for v in var.monitoring_data : v.target_url]
+  job     = var.job_name
+  target  = var.target_url
   enabled = false
   probes = [
     data.grafana_synthetic_monitoring_probes.main.probes.Atlanta,
@@ -17,7 +17,7 @@ resource "grafana_synthetic_monitoring_check" "dns" {
     data.grafana_synthetic_monitoring_probes.main.probes.Toronto,
   ]
   labels = {
-    project = [for v in local.monitoring_data : v.project_label]
+    project = var.project_label
   }
   settings {
     dns {}
