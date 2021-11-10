@@ -1,6 +1,6 @@
 variable "job_name" {
   description = "This is the name you want to give to your Synthetic Monitor"
-  type        = map(list(string))
+  type        = string
 }
 
 variable "target_url" {
