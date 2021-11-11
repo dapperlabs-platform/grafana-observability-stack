@@ -1,8 +1,8 @@
 data "grafana_synthetic_monitoring_probes" "main" {}
 
-resource "grafana_synthetic_monitoring_check" "dns" {
+resource "grafana_synthetic_monitoring_check" "http" {
   job     = var.job_name
-  target  = var.target_url
+  target  = var.target
   enabled = false
   probes = [
     data.grafana_synthetic_monitoring_probes.main.probes.Atlanta,
@@ -20,6 +20,6 @@ resource "grafana_synthetic_monitoring_check" "dns" {
     project = var.project_label
   }
   settings {
-    dns {}
+    http {}
   }
 }
