@@ -1,4 +1,5 @@
-# Grafana Synthetic Monitoring
+# Grafana Synthetic Monitoring DEPRECATED
+Use github.com:dapperlabs-platform/terraform-grafana-synthetic-monitoring-checks.git instead
 
 This module creates a grafana synthetic monitor that takes the job name and the target url as parameters
 
